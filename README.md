@@ -1,0 +1,1 @@
+A simple package to scrapping data from allegro.pl.

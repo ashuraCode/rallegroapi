@@ -1,0 +1,23 @@
+Package: rallegroapi
+Type: Package
+Title: Scrapping data from allegro.pl
+Version: 0.1.0
+Author: Patryk Tomaszewski
+Maintainer: Patryk Tomaszewski <tomaszewski-patryk@prokonto.pl>
+Description: Tworzenie tabel z: wyników wyszukiwania, danej kategori oraz aukcji okreslonego uzytkownika.
+    Pakiet uzywa ogólnodostepnego interfejsu allegro.pl.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    tidyverse,
+    plyr,
+    dplyr,
+    purrr,
+    tibble,
+    httr,
+    jsonlite,
+    magrittr,
+    rvest,
+    openxlsx
+RoxygenNote: 7.0.2
