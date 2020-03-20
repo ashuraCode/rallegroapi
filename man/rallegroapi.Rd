@@ -4,9 +4,6 @@
 \name{rallegroapi}
 \alias{rallegroapi}
 \title{A package for scrapping data from allegro.pl.}
-\description{
-A package for scrapping data from allegro.pl.
-}
 \section{Functions}{
 
 \code{\link{allegro_page_dump}}

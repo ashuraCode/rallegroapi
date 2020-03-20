@@ -148,12 +148,17 @@ allegro_scrap_pages <- function(base_url, query, pageLimit = -1) {
         sellerId = map(., function(entry){ entry$seller$id }),
         superSeller = map_lgl(., function(entry){ as_lgl(entry$seller$superSeller) }),
         sellerRating = map_dbl(., function(entry){ as_dbl(entry$seller$positiveFeedbackPercent) }),
-        price = map_dbl(., function(entry){ as_dbl(entry$sellingMode$buyNow$price$amount) }),
-        currency = map(., function(entry){ entry$sellingMode$buyNow$price$currency }),
+        price = map_dbl(., function(entry){
+          return (as_dbl(entry$sellingMode[[1]]$price$amount))
+          }),
+        currency = map(., function(entry){
+          entry$sellingMode[[1]]$price$currency
+          }),
         rating = map_dbl(., function(entry){ as_dbl(entry$productReview$rating$average) }),
         ratingCount = map_int(., function(entry){ as_int(entry$productReview$rating$count) }),
         quantity = map_int(., function(entry){ as_int(entry$quantity$value) }),
-        type = map(., function(entry){ entry$type })
+        type = map(., function(entry){ entry$type }),
+        endingTime = map(., function(entry){ entry$publication$endingTime })
       )}
     data <- bind_rows(data, items)
 
@@ -176,11 +181,11 @@ allegro_scrap_pages <- function(base_url, query, pageLimit = -1) {
 #' @param order One of values from \link{allegro_order}
 #' @param pageLimit Page limit (-1 means all)
 #' @examples
-#' allegro_serch_dump("herbata", "herbata.xlsx", allegro_order$trafnosc, 1)
+#' allegro_search_dump("herbata", "herbata.xlsx", allegro_order$trafnosc, 1)
 #'
 #' @import openxlsx
 #' @export
-allegro_serch_dump <- function(string, file, order = 'm', pageLimit = -1) {
+allegro_search_dump <- function(string, file, order = 'm', pageLimit = -1) {
   url <- "https://allegro.pl/listing"
   query <- list(
     string = string,
